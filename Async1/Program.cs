@@ -1,8 +1,7 @@
 ﻿using Async1.FileOperations;
 
-
 string currentDirectory = Directory.GetCurrentDirectory(),
-    pathHello = currentDirectory +"\\Hello.txt",
+    pathHello = currentDirectory + "\\Hello.txt",
     pathWorld = currentDirectory + "\\World.txt";
 var fileOperator = new FileOperator();
 fileOperator.WriteTextInFile("Hello", pathHello);

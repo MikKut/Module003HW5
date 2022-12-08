@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+﻿using System.Text;
 
 namespace Async1.FileOperations
 {
     internal class FileOperator
     {
-        private const string HelloString = "Hello", WorldString = "World";
+        private const string HelloString = "Hello";
+        private const string WorldString = "World";
         public void WriteTextInFile(string text, string path)
         {
             ThrowArgumentNullExceptionIfStringIsNullOrEmpty(text, nameof(text));
@@ -22,6 +17,7 @@ namespace Async1.FileOperations
                 f.Write(bytes, 0, bytes.Length);
             }
         }
+
         public async Task<string> ReadHelloWorldFromFile(string pathHello, string pathWorld)
         {
             var hello = await ReadWordFromFile(pathHello, HelloString);
@@ -42,20 +38,15 @@ namespace Async1.FileOperations
             {
                 throw new Exception("There is no word in the file");
             }
+
             return word;
         }
+
         private void ThrowArgumentNullExceptionIfStringIsNullOrEmpty(string text, string parameterName)
         {
-            if (text == null || string.Empty == text)
+            if (text == null || text == string.Empty)
             {
                 throw new ArgumentNullException($"{parameterName} is null or empty");
-            }
-        }
-        private void ThrowFileNotFoundExceptionIFFileIsNotFound(string path)
-        {
-            if (!File.Exists(path))
-            {
-                throw new FileNotFoundException($"There is no file \"{path}\"");
             }
         }
     }
